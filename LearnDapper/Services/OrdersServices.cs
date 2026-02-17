@@ -12,7 +12,6 @@ namespace LearnDapper.Services
             this._dbContext = new DbContext();
         }
 
-
         public async Task GetAllOrders()
         {
             string sqlQueryOrdersGetAll = """ Select * From Orders; """;
@@ -23,13 +22,12 @@ namespace LearnDapper.Services
             }
         }
 
-
         public async Task GetByIdOrders()
         {
             Console.Write(" Kerkli bo'lgan orderning ID sini kiriting (10248 => 11077): ");
             if (int.TryParse(Console.ReadLine(), out int id))
             {
-                if(id<10248 || id > 11077)
+                if(id < 10248 || id > 11077)
                 {
                     Console.WriteLine(" Noto'g'ri amal kiritdingiz !");
                 }
