@@ -1,6 +1,6 @@
-﻿using LearnDapper.Services;
+﻿using NorthwindSurfer.Services;
 
-namespace LearnDapper
+namespace NorthwindSurfer
 {
     internal class Program
     {

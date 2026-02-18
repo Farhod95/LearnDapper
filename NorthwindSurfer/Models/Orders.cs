@@ -1,4 +1,4 @@
-﻿namespace LearnDapper.Models
+﻿namespace NorthwindSurfer.Models
 {
     public class Orders
     {

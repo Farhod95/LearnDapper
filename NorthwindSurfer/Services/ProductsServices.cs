@@ -1,8 +1,8 @@
 ﻿using Dapper;
-using LearnDapper.Data;
-using LearnDapper.Models;
+using NorthwindSurfer.Data;
+using NorthwindSurfer.Models;
 
-namespace LearnDapper.Services
+namespace NorthwindSurfer.Services
 {
     public class ProductsServices: OrdersServices
     {

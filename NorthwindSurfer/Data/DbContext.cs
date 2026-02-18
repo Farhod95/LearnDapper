@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace LearnDapper.Data
+namespace NorthwindSurfer.Data
 {
     public class DbContext
     {

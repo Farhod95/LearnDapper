@@ -1,7 +1,7 @@
 ﻿using Dapper;
-using LearnDapper.Models;
+using NorthwindSurfer.Models;
 
-namespace LearnDapper.Services
+namespace NorthwindSurfer.Services
 {
    public class CustomersServices: OrdersServices
     {
