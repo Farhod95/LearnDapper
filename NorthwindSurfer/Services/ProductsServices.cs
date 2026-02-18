@@ -6,6 +6,35 @@ namespace NorthwindSurfer.Services
 {
     public class ProductsServices: OrdersServices
     {
+        public async Task CreateProducts()
+        {
+            var swlQuery = """
+                insert into Products (ProductName, SupplierID, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued)
+                values (@ProductName, @SupplierID, @CategoryID, @QuantityPerUnit, @UnitPrice, @UnitsInStock, @UnitsOnOrder, @ReorderLevel, @Discontinued);
+                """;
+            var anonimObject = new
+            {
+                ProductName = "O'zbekiston Milliy Taomi",
+                SupplierID = 1,
+                CategoryID = 1,
+                QuantityPerUnit = "10 boxes x 5 kg",
+                UnitPrice = 25.50m,
+                UnitsInStock = (short)100,
+                UnitsOnOrder = (short)0,
+                ReorderLevel = (short)10,
+                Discontinued = false 
+            };
+
+            var rowsUpdate = await _dbContext.connection.ExecuteAsync(swlQuery, anonimObject);
+            if (rowsUpdate > 0)
+            {
+                Console.WriteLine($"{rowsUpdate} ta qator qo'shildi !");
+            }
+            else
+            {
+                Console.WriteLine(" Bironta ham qator qo'shilmadi !");
+            }
+        }
         public async Task GetAllProducts()
         {
             string sqlQuery = """ Select * From Products; """;
@@ -54,6 +83,47 @@ namespace NorthwindSurfer.Services
             {
                 Console.WriteLine();
                 Console.WriteLine($" {item.Id}  {item.ProductName}  {item.SupplierID}  {item.CategoryID}  {item.QuantityPerUNit}  {item.UnitPrice}  {item.UnitslnStock}  {item.UnitsOnOrder}  {item.ReorderLevel}  {item.Discontinued}");
+            }
+        }
+
+
+        public async Task UpdateProduct()
+        {
+            string sqlQuery = """
+                update Products
+                set UnitsInStock = 500
+                where ProductName = 'O''zbekiston Milliy Taomi';
+                """;
+
+            var rowsUpdate = await _dbContext.connection.ExecuteAsync(sqlQuery);
+
+            if (rowsUpdate > 0)
+            {
+                Console.WriteLine($" {rowsUpdate} ta qator yangilandi: UnitsInStock 100 dan 500 ga o'zgardi");
+            }
+            else
+            {
+                Console.WriteLine(" Qator yangilanmadi");
+            }
+        }
+
+
+        public async Task DeleteProduct()
+        {
+            string sqlQuery = """
+                delete from Products
+                where ProductName = 'O''zbekiston Milliy Taomi';
+                """;
+
+            var rowsUpdate = await _dbContext.connection.ExecuteAsync(sqlQuery);
+
+            if (rowsUpdate > 0)
+            {
+                Console.WriteLine($" {rowsUpdate} ta qator yangilandi: yangi qo'shilgan qator o'chirildi ");
+            }
+            else
+            {
+                Console.WriteLine(" Qator yangilanmadi");
             }
         }
     }
